@@ -29,8 +29,59 @@ op-code format
   5 bits for opcode
   3 bits for flag composition
   
-
+  nop  0b00000xxx
+  
+  add  0b00001xxx
+        add will be removed and replaced with shl
+        
+  sub  0b00010xxx
+        sub will be removed and replaced with shr
+        
+  div  0b00011xxx
+        will be removed, may effect further opcodes or converted to a nop of sorts
+        --MAY ALSO BE TURNED INTO A CRASH PROGRAM OP-CODE
+        
+  mult 0b00100xxx
+        will be removed, may effect further op codes or converted into a nop of sorts
+        --MAY ALSO BE TURNED INTO A CRASH PROGRAM OP-CODE
+        
+  push 0b00101xxx 
+        pushes an item onto the stack, the stack must be set up by the OS.VDSK
+        
+  pop  0b00110xxx
+        poips from the stack, the stack must have been initilized from the OS.VDSK 
+  
   mov  0b00111xxx
+  
+  int  0b01000xxx 
+        calls an interupt function off of the interupt table, the virtual hardware 
+        interupts are set up for you by the program. other interupts may take additional work
+        andd require you to write your own calling convention
+  
+  cmp  0b01001xxx
+        sets the flag register based on comparisons, flags effect jmp adversley
+        
+  jmp  0b01010xxx
+        relative jump
+    
+  jmpf 0b01011xxx
+        far jump
+        
+  iqrl 0b01100xxx
+     instruction query location
+     
+  and  0b01101xxx
+        
+  or   0b01110xxx
+  
+  xor  0b01111xxx
+  
+  not  0b10000xxx
+  
+  mod  0b10001xxx   
+        mod will be removed,
   ~~~~ 
   
   As you go through the program please update opcodes!
+  
+  all math opperators will be removed for my own entertainment while contestants do the ctf 
