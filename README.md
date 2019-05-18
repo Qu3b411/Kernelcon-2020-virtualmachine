@@ -9,6 +9,11 @@
 5. set permissions on interupt table locations 0x100-103 on the vdisk
 6. write an opcode map to make programming challenges easier in hex
 
+**once the virtual machine is written and tested their will be 5 challenges in total, 2 programming challenges, they should not be easy and each os.vdsk should work when submited. 2 reverse engineering challenges, and the first challenge will be for contestents to find the opcode set! this is not ment to be an easy catagory**
+the virtual machine will live in the root directory,
+their will be no OS.VKSK in the root once the vm is finalized. this is just a testing platform.
+taikie the time to document the opcodes in the readme. please take time to fix things as you move forward, i know it is going to be dificult but once its done we should have an extreamly nice ctf catagory that makes an impression
+
 ## OP-CODE map
 ~~~~
 program execution starts at org 0x7c00 
