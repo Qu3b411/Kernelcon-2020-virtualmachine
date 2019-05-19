@@ -42,11 +42,11 @@ op-code format
   sub  0b00010xxx
         sub will be removed and replaced with shr
         
-  div  0b00011xxx
+  div  0b00011xxx has become an invalid instruction
         will be removed, may effect further opcodes or converted to a nop of sorts
         --MAY ALSO BE TURNED INTO A CRASH PROGRAM OP-CODE
         
-  mult 0b00100xxx
+  mult 0b00100xxx has become an invalid instruction
         will be removed, may effect further op codes or converted into a nop of sorts
         --MAY ALSO BE TURNED INTO A CRASH PROGRAM OP-CODE
         
@@ -83,7 +83,7 @@ op-code format
   
   not  0b10000xxx
   
-  mod  0b10001xxx   
+  mod  0b10001xxx   has become an invalid instruction
         mod will be removed,
   ~~~~ 
   
