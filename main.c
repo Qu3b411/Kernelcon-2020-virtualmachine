@@ -30,7 +30,7 @@ int main()
 
     push_(0b001,IP_,0b0000);
     pop_(0b00,AX_,0b0000);
- //   iqrl_(0b11,BX_,0x00);
+    iqrl_(0b11,BX_,0x00);
     mov_(0b011,0b001,0x00000000);
     add_(0b011,0b001,0xcafebabe);
     free(RAM_base);

@@ -137,8 +137,8 @@ void push_(int flag, int Load,int setNull){paramMacro(push,setNull,Load)SP--;}
     OR -- 0b01110xxx  adds takes two arguments and stores them in accordance with the flag bits.
           0b011101xx  adds data from a specified source with data stored with a logical memory address.
                       the data at that specified memory address is altered by this OP-CODE.
-          0b011100xx adds data from a specified source with a register. the register specified is altered
-                     by this OP-CODE.
+          0b011100xx  adds data from a specified source with a register. the register specified is altered
+                      by this OP-CODE.
           0b01110x01 adds data at a register with the predetermined source. the register is not effected
                       by this OP-CODE.
           0b01110x10 adds data at a logical memory address with a designated source. the data at the memory
@@ -291,6 +291,8 @@ void pop_(int flag, int reg, int setnull)
         exit(EXIT_FAILURE);
     }
 }
+
+typedef void(*callback)();
 void INT_(int flagNull, int interrupt, int setNull)
 {
     switch (interrupt)
@@ -303,7 +305,7 @@ void INT_(int flagNull, int interrupt, int setNull)
              scanf("%c", di_Temp);
             break;
         case 2:
-            putchar(DI);
+             ((callback)((void(*)(void*))*(RAM_base+0x102)))();
             break;
         default:
             badRegError;
@@ -324,6 +326,12 @@ void iqrl_(int flag, int load_a, int setnull)
         mov_(flag,load_a,(int)(IP-RAM_base));
     else
         badRegError;
+}
+
+
+void invalid_instruction(int flag,int a, int b)
+{
+    IP-=1;
 }
 /**
     relative offset jump instruction . produces a fix for the

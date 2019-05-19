@@ -210,6 +210,8 @@ void or_(int flag,int a, int b);
 void xor_(int flag,int a, int b);
 void not_(int flag,int a, int setNull);
 void mod_(int flag,int a, int b);
+
+void invalid_instruction(int flag,int a, int b);
 #define AX_ 0b0001
 #define BX_ 0b0010
 #define CX_ 0b0011
