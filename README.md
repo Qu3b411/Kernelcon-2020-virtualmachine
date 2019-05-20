@@ -19,37 +19,23 @@ taikie the time to document the opcodes in the readme. please take time to fix t
 program execution starts at org 0x7c00 
 boot sector goes to 0x7c80 bytes 
 
-interupt table starts at offset 0x100
-default interupts:
-  int 1 ~ address 0x100
-          keyboard buffer, reads data from the keyboard to a small data segment 
-          
-  int 2 ~ address 0x101 
-          Srial bus: reads hard disk drive NOT COMPLEATE
-  int 2 ~ address 0x102
-          BIOS video outpu, when called prints the character stored in DI to the sacreen.
-          this may be modified to allow for string output as well 
-          
+    
 op-code format
   5 bits for opcode
   3 bits for flag composition
   
   nop  0b00000xxx
   
-  add  0b00001xxx
-        add will be removed and replaced with shl
+  shl  0b00001xxx
+      shift left instruction
         
-  sub  0b00010xxx
-        sub will be removed and replaced with shr
+  shr  0b00010xxx 
+      shift right instruction
         
-  div  0b00011xxx has become an invalid instruction
-        will be removed, may effect further opcodes or converted to a nop of sorts
-        --MAY ALSO BE TURNED INTO A CRASH PROGRAM OP-CODE
-        
-  mult 0b00100xxx has become an invalid instruction
-        will be removed, may effect further op codes or converted into a nop of sorts
-        --MAY ALSO BE TURNED INTO A CRASH PROGRAM OP-CODE
-        
+  invalid instruction  0b00011xxx, enters a processor lock state, infinate loop
+       
+  invalid instruction  0b00100xxx, enters a processor lock state, infinate loop
+           
   push 0b00101xxx 
         pushes an item onto the stack, the stack must be set up by the OS.VDSK
         
@@ -61,7 +47,20 @@ op-code format
   int  0b01000xxx 
         calls an interupt function off of the interupt table, the virtual hardware 
         interupts are set up for you by the program. other interupts may take additional work
-        andd require you to write your own calling convention
+        andd require you to write your own calling convention.
+    
+    interupt table starts at offset 0x100
+    
+    default interupts:
+      int 1 ~ address 0x100
+              keyboard buffer, reads data from the keyboard to a small data segment 
+
+      int 2 ~ address 0x101 
+              Srial bus: reads hard disk drive NOT COMPLEATE
+      int 2 ~ address 0x102
+              BIOS video outpu, when called prints the character stored in DI to the sacreen.
+              this may be modified to allow for string output as well 
+
   
   cmp  0b01001xxx
         sets the flag register based on comparisons, flags effect jmp adversley
@@ -83,8 +82,9 @@ op-code format
   
   not  0b10000xxx
   
-  mod  0b10001xxx   has become an invalid instruction
-        mod will be removed,
+  
+  invalid instruction  0b10001xxx, enters a processor lock state, infinate loop
+          
   ~~~~ 
   
   As you go through the program please update opcodes!
