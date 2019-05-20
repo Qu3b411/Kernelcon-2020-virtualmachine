@@ -146,7 +146,14 @@ void push_(int flag, int Load,int setNull){paramMacro(push,setNull,Load)SP--;}
           0b01110x11  adds data from a designated source with an  arbitrary constant.
 
 */
-void add_(int flag, int Load_a, int Load_b){subMacroDef(add,flag,Load_a,Load_b);}
+void shl_(int flag, int Load_a, int Load_b)
+{
+    if ((flag == FLAG_REG) ^ (flag == FLAG_CONST))
+    {
+        subMacroDef(shl,flag,Load_a,Load_b);
+    }
+
+}
 /**
     the SUB instruction takes two input's and subtracts them to find their difference. this instruction
     has the following OP-CODE specification. the base instruction is 0b01110 and is proceeded by three
@@ -164,7 +171,13 @@ void add_(int flag, int Load_a, int Load_b){subMacroDef(add,flag,Load_a,Load_b);
           0b01110x11 subtracts data from a designated source with an  arbitrary constant.
 
 */
-void sub_(int flag, int Load_a, int Load_b){subMacroDef(sub,flag,Load_a,Load_b);}
+void shr_(int flag, int Load_a, int Load_b)
+{
+    if ((flag == FLAG_REG) ^ (flag == FLAG_CONST))
+    {
+        subMacroDef(shr,flag,Load_a,Load_b);
+    }
+}
 /**
     the MULT instruction takes two input's and finds their product. this instruction
     has the following OP-CODE specification. the base instruction is 0b01110 and is proceeded by three
@@ -301,8 +314,8 @@ void INT_(int flagNull, int interrupt, int setNull)
             free(RAM_base);
             exit(EXIT_SUCCESS);
         case 1:;
-            char* di_Temp= (char*) &DI;
-             scanf("%c", di_Temp);
+            ((callback)((void(*)(void*))*(RAM_base+0x100)))();
+
             break;
         case 2:
              ((callback)((void(*)(void*))*(RAM_base+0x102)))();
@@ -323,9 +336,14 @@ void INT_(int flagNull, int interrupt, int setNull)
 void iqrl_(int flag, int load_a, int setnull)
 {
     if(flag == 0b011)
-        mov_(flag,load_a,(int)(IP-RAM_base));
-    else
-        badRegError;
+        {
+            mov_(flag,load_a,(int)(IP-RAM_base));
+        }
+        else
+        {
+
+            badRegError;
+        }
 }
 
 

@@ -88,7 +88,7 @@ void LoadInstructions(){
 
 **/
 static FUNCT_PROTO FUNCT[] = {
-    *nop_,*add_,*sub_,*invalid_instruction,*invalid_instruction,*push_,*pop_,*mov_,*INT_,
+    *nop_,*shl_,*shr_,*invalid_instruction,*invalid_instruction,*push_,*pop_,*mov_,*INT_,
     *cmp_,*jmp_,*jmpf_,*iqrl_,*and_,*or_,*xor_,*not_,*invalid_instruction};
 
 void BOOT()
