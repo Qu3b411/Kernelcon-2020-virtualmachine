@@ -17,6 +17,8 @@
                         0b___ indicates the source value is a register 
                         0b___ indicates the source value is a constant
                         
+  the remaining ____ bits are used to store the first opperand, and  ___ bits to store the second opperand
+                   
 
 3. The interupt table starts at address 0x____, ends at address 0x____, and contains 3 bus addresses by default, 
        video out 0x___
@@ -46,6 +48,18 @@ SP: 0b____   BP: 0b____      SI: 0b_____    DI:  0b____
 DS: 0b____   CS: 0b____      ES: 0b_____    SS:  0b____
 IP: 0b____
 
-if you completed this task you are ready to start the next challenge, submit this to get the flag! 
+20  write the opcode for the following  in hex notation
+
+        mov ax,0xdeadbeaf : _________________________________________________
+        
+        push ax           : _________________________________________________
+        
+        pop bx            : _________________________________________________
+        
+        shl bx,5          : _________________________________________________
+        
+        xor ax,bx         : _________________________________________________
+        
+if you completed this task you are ready to start the next challenge.
 ~~~~
 
