@@ -5,10 +5,23 @@
 
 2. The op-code for this vm is comprised of ___ bits and has a ___ bit flag proceeding it
 
+                  the first ___ bits of the flag determine if one is affecting a register, or a memory address!
+                  
+                        0b___ indicates one is affecting the value of a memory address!
+                        0b___ indicates one is affecting the value of a register!
+                        
+                 the last __ bits of the flag indicate that the unaffected value influencing this instruction is a memory address, 
+                 register, or constant
+                  
+                        0b___ indicates the source value is a memory address
+                        0b___ indicates the source value is a register 
+                        0b___ indicates the source value is a constant
+                        
+
 3. The interupt table starts at address 0x____, ends at address 0x____, and contains 3 bus addresses by default, 
-      3a. video out 0x___
-      3b. keyboard in 0x___
-      3c. disk in 0x___
+       video out 0x___
+       keyboard in 0x___
+       disk in 0x___
       
 4.  the mov instruction has the following op-code  0b_________
 5.  the and instruction has the following op-code  0b_________
