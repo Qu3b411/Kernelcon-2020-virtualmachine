@@ -60,7 +60,7 @@ DS: 0b0111   CS: 0b1000      ES: 0b1010    IP:  0b1011
         xor ax,bx         : 79 00 00 01 00 00 00 02
         
         what would the value of ax be if these instructions were run 
-        0xD5B7D5E0
+        0xB1A6B4F
         
 if you completed this task you are ready to start the next challenge.
 ~~~~
