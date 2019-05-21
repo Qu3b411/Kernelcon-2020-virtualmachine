@@ -17,7 +17,7 @@
                         0b___ indicates the source value is a register 
                         0b___ indicates the source value is a constant
                         
-  the remaining ____ bits are used to store the first opperand, and  ___ bits to store the second opperand
+  the following ____ bits are used to store the first opperand, and the remaining ___ bits to store the second opperand
                    
 
 3. The interupt table starts at address 0x____, ends at address 0x____, and contains 3 bus addresses by default, 
@@ -44,9 +44,8 @@
 19. their are 13 registers give the opcode to refer to each one
 
 AX: 0b____   BX: 0b____      CX: 0b_____    DX:  0b____
-SP: 0b____   BP: 0b____      SI: 0b_____    DI:  0b____
-DS: 0b____   CS: 0b____      ES: 0b_____    SS:  0b____
-IP: 0b____
+SP: 0b____   BP: 0b____      SI: 0b_____    SS:  0b____
+DS: 0b____   CS: 0b____      ES: 0b_____    IP:  0b____
 
 20  write the opcode for the following  in hex notation
 
@@ -59,6 +58,9 @@ IP: 0b____
         shl bx,5          : _________________________________________________
         
         xor ax,bx         : _________________________________________________
+        
+        what would the value of ax be if these instructions were run 
+        0x_____________________________________________
         
 if you completed this task you are ready to start the next challenge.
 ~~~~
