@@ -2,6 +2,9 @@
 #define VM_H_INCLUDED
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef linux
+#include <malloc.h>
+#endif // linux
 #define Lt          0b00000000000000000000000000000001
 #define Eq          0b00000000000000000000000000000010
 #define Gt          0b00000000000000000000000000000100
@@ -181,10 +184,9 @@ unsigned int *RAM_base, AX,BX,CX,DX,
     DATA INPUT ON SERIAL BUS 1. CODE REGISTER API.
 */
 #define Hardware_SerialInput 0b01
-
-int  USB_BUS_IO_1;
-int  SERIAL_BUS_1_HDD_IO_1;
-int  BIOS_VIDEO_OUT_BUS_1;
+unsigned long USB_BUS_IO_1;
+unsigned long SERIAL_BUS_1_HDD_IO_1;
+unsigned long BIOS_VIDEO_OUT_BUS_1;
 unsigned int FLAGS;
 #define INT_TERMINATE 0;
 typedef void (*FUNCT_PROTO)();
@@ -193,7 +195,7 @@ void HardwareSetup();
 void LoadInstructions();
 void BOOT();
 void INT_(int flagNull, int interuptContext, int setNull);
-void mov_(int flag, int Load_a, int Load_b);
+void mov_(int flag, unsigned int Load_a, unsigned int Load_b);
 void shl_(int flag, int a, int b);
 void shr_(int flag, int a, int b);
 void div_(int flag, int a, int b);

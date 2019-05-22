@@ -227,7 +227,7 @@ void div_(int flag, int Load_a, int Load_b){subMacroDef(div,flag,Load_a,Load_b);
             0b00001x11  moves a predetermined constant to a destination.
     the source buffer being coppied from is unaffected by this instruction.
 */
-void mov_(int flag, int Load_a, int Load_b)
+void mov_(int flag, unsigned int Load_a, unsigned int Load_b)
 {
     if (flag&FLAG_H)
     {
@@ -308,17 +308,31 @@ void pop_(int flag, int reg, int setnull)
 typedef void(*callback)();
 void INT_(int flagNull, int interrupt, int setNull)
 {
+    unsigned long tempfunction;
     switch (interrupt)
     {
         case 0:
             free(RAM_base);
             exit(EXIT_SUCCESS);
         case 1:;
-            ((callback)((void(*)(void*))*(RAM_base+0x100)))();
-
+    #ifdef __x86_64
+            tempfunction = *(RAM_base+0x101);
+            tempfunction <<= 0x20;
+            tempfunction ^= *(RAM_base+0x100);
+             ((callback)((void(*)(void*))(tempfunction)))();
+    #elif __x86__
+           ((callback)((void(*)(long*))*(RAM_base+0x100)))();
+    #endif // __x86_64
             break;
         case 2:
-             ((callback)((void(*)(void*))*(RAM_base+0x102)))();
+        #ifdef __x86_64
+            tempfunction = *(RAM_base+0x105);
+            tempfunction <<= 0x20;
+            tempfunction ^= *(RAM_base+0x104);
+            ((callback)((void(*)(void*))(tempfunction)))();
+        #elif __x86__
+           ((callback)((void(*)(long*))*(RAM_base+0x104)))();
+        #endif // __x86_64
             break;
         default:
             badRegError;
