@@ -39,12 +39,12 @@
 #define pushOpperator(_NaN,_val2) *SP=_val2;
 
 #define cmpOpperator(_VAL_,_VAL2_)\
-    if (_VAL_>_VAL2_)\
-        FLAGS ^=Lt; \
+    if (_VAL_==_VAL2_)\
+       { FLAGS ^=Eq;} \
     else if (_VAL_<_VAL2_)\
-        FLAGS ^=Gt;\
+       { FLAGS ^=Gt;}\
     else \
-        FLAGS^=Eq;
+       { FLAGS^=Lt;}
 
 #define paramMacro(_opp,_VAL_,_VAL2_)\
         switch (flag & FLAG_L)\
@@ -61,7 +61,7 @@
                             {\
                                 switch (_VAL2_)\
                                 {\
-                                    case DI_:_opp##Opperator(_VAL_,DX);break;\
+                                    case DI_:_opp##Opperator(_VAL_,DI);break;\
                                     case IP_:_opp##Opperator(_VAL_,(int)(IP-RAM_base));break;\
                                     case SI_:_opp##Opperator(_VAL_,(int)(SI-RAM_base));break;\
                                     case CS_:_opp##Opperator(_VAL_,(int)(CS-RAM_base));break;\
@@ -174,7 +174,7 @@ void KBBuffer();
 void readHardDisk();
 void videoOut();
 
-int *RAM_base, AX,BX,CX,DX,
+unsigned int *RAM_base, AX,BX,CX,DX,
 * SP, *BP, *SI,DI, *DS, *CS, *SS, *ES, *IP;
 
 /*

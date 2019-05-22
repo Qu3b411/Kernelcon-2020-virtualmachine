@@ -46,7 +46,7 @@ typedef int (*callback)();
 void LoadInstructions(){
     DISK = fopen("OS.VKDSK", "r+");
     /*0x7c00 +0x200 = 0x7e00, 0x100000*/
-    fgets((char*)RAM_base,0x8000,DISK);
+    fgets((char*)RAM_base,0x9000,DISK);
     int x = 0;
     int temp = 0 ;
 

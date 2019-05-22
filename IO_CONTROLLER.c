@@ -6,9 +6,7 @@ void readHardDisk()
 
 void KBBuffer()
 {
-
-    char* di_Temp= (char*) &DI;
-    scanf("%c", di_Temp);
+    DI=getchar();
 }
 
 void videoOut()
