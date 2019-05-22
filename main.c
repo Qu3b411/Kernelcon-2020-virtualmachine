@@ -23,21 +23,6 @@ int main()
 {   HardwareSetup();
     LoadInstructions();
     BOOT();
- //   mov_(0b010,AX_,0x100);
- //   ((callback)((void(*)(void*))*(RAM_base+0x100)))();
- //   ((callback)((void(*)(void*))*(RAM_base+0x101)))();
- //   ((callback)((void(*)(void*))*(RAM_base+0x102)))();
-
- //   push_(0b001,IP_,0b0000);
- //   pop_(0b00,AX_,0b0000);
- //   mov_(0b011,0b001,0x00001000);
- //  shl_(FLAG_CONST,AX_,1);
- //   mov_(FLAG_CONST,BX_,0b01);
-   // shr_(FLAG_REG,AX_,BX_);
-  //  iqrl_(0b11,BX_,0x00);
-   // add_(0b011,0b001,0xcafebabe);
-  //   ((callback)((void(*)(void*))*(RAM_base+0x102)))();
-
     free(RAM_base);
     free(DISK);
     return 0;

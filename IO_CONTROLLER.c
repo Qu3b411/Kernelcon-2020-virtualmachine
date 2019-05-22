@@ -11,6 +11,5 @@ void KBBuffer()
 
 void videoOut()
 {
-
-            putchar(DI);
+    putchar(DI);
 }

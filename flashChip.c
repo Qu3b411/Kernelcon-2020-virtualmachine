@@ -20,9 +20,9 @@ void HardwareSetup()
             1parse io controllers for sector 0x000:0x8000 -> 0x80ff
             read ROM.fchp to 0x000:0xC000 ->0xffff;
     */
-    USB_BUS_IO_1 = (int)&KBBuffer;
-    SERIAL_BUS_1_HDD_IO_1 = (int)&readHardDisk;
-    BIOS_VIDEO_OUT_BUS_1 = (int)&videoOut;
+    USB_BUS_IO_1 = (void*)&KBBuffer;
+    SERIAL_BUS_1_HDD_IO_1 = (void*)&readHardDisk;
+    BIOS_VIDEO_OUT_BUS_1 = (void*)&videoOut;
 
 
 }
@@ -71,9 +71,22 @@ void LoadInstructions(){
     /*
         set up hardware ports at memory addresses 0x000:0x400 -> 0x000:0x408
     */
+    #ifdef __x86_64
         mov_(0b111,0x100,USB_BUS_IO_1); /* set the usb bus to memory address 0x400*/
-        mov_(0b111,0x101,SERIAL_BUS_1_HDD_IO_1); /* set the hard disk bus to memory address 0x404*/
-        mov_(0b111,0x102,BIOS_VIDEO_OUT_BUS_1);/*set the bios video output bus to memory address 0x408*/
+        USB_BUS_IO_1>>=0x20;
+        mov_(0b111,0x101,USB_BUS_IO_1);
+        mov_(0b111,0x102,SERIAL_BUS_1_HDD_IO_1); /* set the hard disk bus to memory address 0x404*/
+        SERIAL_BUS_1_HDD_IO_1>>=0x20;
+        mov_(0b111,0x103,SERIAL_BUS_1_HDD_IO_1);
+        mov_(0b111,0x104,BIOS_VIDEO_OUT_BUS_1);/*set the bios video output bus to memory address 0x408*/
+        BIOS_VIDEO_OUT_BUS_1>>=0x20;
+        mov_(0b111,0x105,BIOS_VIDEO_OUT_BUS_1);
+    #elif __WIN32
+        mov_(0b111,0x100,USB_BUS_IO_1); /* set the usb bus to memory address 0x400*/
+        mov_(0b111,0x102,SERIAL_BUS_1_HDD_IO_1); /* set the hard disk bus to memory address 0x404*/
+        mov_(0b111,0x104,BIOS_VIDEO_OUT_BUS_1);/*set the bios video output bus to memory address 0x408*/
+
+    #endif // __x86_64
         /*
             0x000:0x40c ->0x000:0x4f7 keyboqard buffer;
             0x000:0x4f8->0x4fb keyboard buffer base point
