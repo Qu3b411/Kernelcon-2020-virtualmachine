@@ -81,10 +81,11 @@ void LoadInstructions(){
         mov_(0b111,0x104,BIOS_VIDEO_OUT_BUS_1);/*set the bios video output bus to memory address 0x408*/
         BIOS_VIDEO_OUT_BUS_1>>=0x20;
         mov_(0b111,0x105,BIOS_VIDEO_OUT_BUS_1);
-    #elif __x86__
+    #elif __WIN32
         mov_(0b111,0x100,USB_BUS_IO_1); /* set the usb bus to memory address 0x400*/
         mov_(0b111,0x102,SERIAL_BUS_1_HDD_IO_1); /* set the hard disk bus to memory address 0x404*/
         mov_(0b111,0x104,BIOS_VIDEO_OUT_BUS_1);/*set the bios video output bus to memory address 0x408*/
+
     #endif // __x86_64
         /*
             0x000:0x40c ->0x000:0x4f7 keyboqard buffer;

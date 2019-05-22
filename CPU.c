@@ -320,7 +320,7 @@ void INT_(int flagNull, int interrupt, int setNull)
             tempfunction <<= 0x20;
             tempfunction ^= *(RAM_base+0x100);
              ((callback)((void(*)(void*))(tempfunction)))();
-    #elif __x86__
+    #elif __WIN32
            ((callback)((void(*)(long*))*(RAM_base+0x100)))();
     #endif // __x86_64
             break;
@@ -330,7 +330,7 @@ void INT_(int flagNull, int interrupt, int setNull)
             tempfunction <<= 0x20;
             tempfunction ^= *(RAM_base+0x104);
             ((callback)((void(*)(void*))(tempfunction)))();
-        #elif __x86__
+        #elif __WIN32
            ((callback)((void(*)(long*))*(RAM_base+0x104)))();
         #endif // __x86_64
             break;
