@@ -11,6 +11,7 @@
 4. fix the INT_ to opperate off the interupt tasble
 5. set permissions on interupt table locations 0x100-103 on the vdisk
 6. write an opcode map to make reversing challenges easier for us to write
+7. full rewrite of jump to support jmp to offset stored in register and correct other fundamental issues
 
 **once the virtual machine is written and tested their will be 5 challenges in total, 2 programming challenges, they should not be easy and each os.vdsk should work when submited. 2 reverse engineering challenges, and the first challenge will be for contestents to find the opcode set! this is not ment to be an easy catagory**
 the virtual machine will live in the root directory,
