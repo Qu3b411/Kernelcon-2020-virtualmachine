@@ -21,9 +21,9 @@
                    
 
 3. The interupt table starts at address 0x100, ends at address 0x300, and contains 3 bus addresses by default, 
-       video out 0x102
+       video out 0x104
        keyboard in 0x100
-       disk in 0x101
+       disk in 0x102
       
 4.  the mov instruction has the following op-code  0b00111
 5.  the and instruction has the following op-code  0b01101
