@@ -449,15 +449,15 @@ void jmpf_(int flag, int addr, int setnull)
             break;
         case JLE_flag:
             if(FLAGS&Lz)
-                jmp_(JMP_flag,addr,0x00);
+                jmpf_(JMP_flag,addr,0x00);
             break;
         case JGE_flag:
             if(FLAGS&Gz)
-                jmp_(JMP_flag,addr,0x00);
+                jmpf_(JMP_flag,addr,0x00);
             break;
         case JNE_flag:
             if(FLAGS&Nz)
-                jmp_(JMP_flag,addr,0x00);
+                jmpf_(JMP_flag,addr,0x00);
             break;
     }
 }

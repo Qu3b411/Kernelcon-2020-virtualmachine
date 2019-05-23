@@ -55,7 +55,7 @@ void LoadInstructions(){
         for (; x <0x8000; x++)
         {
             temp = *(RAM_base+x);
-            char* fixEndian=(char*) &(temp);
+            unsigned char* fixEndian=(unsigned char*) &(temp);
             int y = 0;
             *(RAM_base+x)=0;
             for(;y<sizeof(int);y++)
