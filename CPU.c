@@ -195,7 +195,7 @@ void shr_(int flag, int Load_a, int Load_b)
             0b01110x11 multiplies data from a designated source with an  arbitrary constant.
 
 */
-void mult_(int flag, int Load_a, int Load_b){subMacroDef(mult,flag,Load_a,Load_b);}
+//void mult_(int flag, int Load_a, int Load_b){subMacroDef(mult,flag,Load_a,Load_b);}
 /**
     the DIV instruction takes two input's and divides them. this instruction
     has the following OP-CODE specification. the base instruction is 0b01110 and is proceeded by three
@@ -213,7 +213,7 @@ void mult_(int flag, int Load_a, int Load_b){subMacroDef(mult,flag,Load_a,Load_b
            0b01110x11 divides data from a designated source with an  arbitrary constant.
 
 */
-void div_(int flag, int Load_a, int Load_b){subMacroDef(div,flag,Load_a,Load_b);}
+//void div_(int flag, int Load_a, int Load_b){subMacroDef(div,flag,Load_a,Load_b);}
 /**
     the MOV instruction serves to copy data from a source to a destination. this instruction
     has the oppcode specification 0b00110, and is preceded by 3 flag bits. as specified below
@@ -394,9 +394,9 @@ void invalid_instruction(int flag,int a, int b)
             0b01010111  makes a relative jump if and only if the greater to flag
                     or the less then flags are set in the flag register.
 */
-void jmp_(int flag, int offset, int setnull)
+void jmp_(int flag, int flag_2, int offset)
 {
-    jmpf_(flag,(int)((IP-RAM_base)+(offset)),setnull);
+    jmpf_(flag,flag_2,(int)((IP-RAM_base)+(offset)));
 
 }
 /**
@@ -427,13 +427,14 @@ void jmp_(int flag, int offset, int setnull)
             0b01011111 jumps to the designated address if either the greater to flag, or the
                         less then flag is set in the FLAGS register.
 */
-void jmpf_(int flag, int addr, int setnull)
+void jmpf_(int flag, int flag_2, int addr)
 {
-    switch (flag)
+    switch (flag_2)
     {
         case JMP_flag:
-                if ((RAM_base+addr > RAM_base) && RAM_base+addr<RAM_base+0x1000000)
-                IP = RAM_base+addr;
+            paramMacro(jmp,0x00,addr)
+           /*     if ((RAM_base+addr > RAM_base) && RAM_base+addr<RAM_base+0x1000000)
+                IP = RAM_base+addr;*/
             break;
         case JL_flag:
             if (FLAGS&Lt)

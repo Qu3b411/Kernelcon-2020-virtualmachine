@@ -49,6 +49,10 @@
     else \
        { FLAGS^=Lt;}
 
+#define jmpOpperator(_VAL_,_VAL2_)\
+if ((RAM_base+_VAL2_ > RAM_base) && RAM_base+_VAL2_<RAM_base+0x1000000)\
+                IP = RAM_base+_VAL2_/4;
+
 #define paramMacro(_opp,_VAL_,_VAL2_)\
         switch (flag & FLAG_L)\
         {\
