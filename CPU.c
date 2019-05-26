@@ -432,33 +432,74 @@ void jmpf_(int flag, int flag_2, int addr)
     switch (flag_2)
     {
         case JMP_flag:
-            paramMacro(jmp,0x00,addr)
+        switch (flag & FLAG_L)\
+        {\
+            case FLAG_REG:\
+                switch (addr)\
+                {\
+                 /**<  */   case AX_: jmpOpperator(0x00,AX);break;\
+                    case BX_: jmpOpperator(0x00,BX);break;\
+                    case CX_: jmpOpperator(0x00,CX);break;\
+                    case DX_: jmpOpperator(0x00,DX);break;\
+                     default:\
+                         if(FLAGS&kernal)\
+                            {\
+                                switch (addr)\
+                                {\
+                                    case DI_:jmpOpperator(0x00,DI);break;\
+                                    case IP_:jmpOpperator(0x00,(int)(IP-RAM_base));break;\
+                                    case SI_:jmpOpperator(0x00,(int)(SI-RAM_base));break;\
+                                    case CS_:jmpOpperator(0x00,(int)(CS-RAM_base));break;\
+                                    case SP_:jmpOpperator(0x00,(int)(SP-RAM_base));break;\
+                                    case DS_:jmpOpperator(0x00,(int)(DS-RAM_base));break;\
+                                    case ES_:jmpOpperator(0x00,(int)(ES-RAM_base));break;\
+                               }\
+                            }\
+                            else\
+                            {\
+                                puts("error: bad register index");\
+                                exit(EXIT_FAILURE);\
+                            }\
+                }
+                case FLAG_ADDR:\
+                    jmpOpperator(0x00,*(RAM_base+addr))\
+                    break;\
+                case FLAG_CONST:\
+                    jmpOpperator(0x00,addr)\
+                    break;\
+                default:\
+                    puts("error: invalid syntax flag not valid");\
+                    exit(EXIT_FAILURE);\
+            }
+
+
+           // paramMacro(jmp,0x00,addr)
            /*     if ((RAM_base+addr > RAM_base) && RAM_base+addr<RAM_base+0x1000000)
                 IP = RAM_base+addr;*/
             break;
         case JL_flag:
             if (FLAGS&Lt)
-                jmpf_(JMP_flag,addr,0x00);
+                jmpf_(flag,JMP_flag,addr);
             break;
         case JE_flag:
             if (FLAGS&Eq)
-                jmpf_(JMP_flag,addr,0x00);
+                jmpf_(flag,JMP_flag,addr);
             break;
         case JG_flag:
             if (FLAGS&Gt)
-                jmpf_(JMP_flag,addr,0x00);
+                jmpf_(flag,JMP_flag,addr);
             break;
         case JLE_flag:
             if(FLAGS&Lz)
-                jmpf_(JMP_flag,addr,0x00);
+                jmpf_(flag,JMP_flag,addr);
             break;
         case JGE_flag:
             if(FLAGS&Gz)
-                jmpf_(JMP_flag,addr,0x00);
+                jmpf_(flag,JMP_flag,addr);
             break;
         case JNE_flag:
             if(FLAGS&Nz)
-                jmpf_(JMP_flag,addr,0x00);
+                 jmpf_(flag,JMP_flag,addr);
             break;
     }
 }
