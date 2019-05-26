@@ -48,3 +48,17 @@ pop dx        ;30 00 00 04 00 00 00 00
 pop cx        ;30 00 00 03 00 00 00 00
 pop bx        ;30 00 00 02 00 00 00 00
 ~~~~
+
+returning from a function call is simple, as long as the stack is properly maintained 
+
+~~~~
+
+;retrive the return address from the stack, store it in a non-return register
+
+pop cx        ;30 00 00 03 00 00 00 00
+
+;jmp to cx
+
+jmp cx        ;59 00 00 01 00 00 00 03
+
+~~~~
