@@ -29,7 +29,7 @@ pop ax        ;30 00 00 01 00 00 00 00
 xor ax,bx     ;79 00 00 01 00 00 00 02
 shl dx,1      ;0b 00 00 04 00 00 00 01
 mov bx,dx     ;39 00 00 02 00 00 00 04
-cmp bx,0      ;48 00 00 02 00 00 00 00
+cmp bx,0      ;4B 00 00 02 00 00 00 00
 jnz cx        ;59 00 00 07 00 00 00 03
 
 ;Finish Addition algorithm
