@@ -58,7 +58,7 @@ if ((RAM_base+_VAL2_ > RAM_base) && RAM_base+_VAL2_<RAM_base+0x1000000)\
                 }\
                 else\
                 {\
-                    IP = RAM_base+_VAL2_;\
+                    IP = RAM_base+_VAL2_/4;\
                 }\
     }
 

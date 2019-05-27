@@ -114,6 +114,5 @@ void BOOT()
 {
     IP=RAM_base+(0x7c00/4); /* org 0x7c00/4 due to pointer behavior*/
     for (;IP!=RAM_base+(0x7E00/4);IP+=2)
-
          FUNCT[(*(IP)&COMMND_OPP)>>27]((*(IP)&FLAG_OPP)>>24,*(IP)&VAR1_FLAG,*(IP+1));
 }

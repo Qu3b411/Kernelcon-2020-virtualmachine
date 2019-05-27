@@ -351,7 +351,7 @@ void iqrl_(int flag, int load_a, int setnull)
 {
     if(flag == 0b011)
         {
-            mov_(flag,load_a,(int)(IP-RAM_base));
+            mov_(flag,load_a,((int)(IP-RAM_base))*4);
         }
         else
         {
