@@ -46,7 +46,7 @@ typedef int (*callback)();
 void LoadInstructions(){
     DISK = fopen("OS.VKDSK", "r+");
     /*0x7c00 +0x200 = 0x7e00, 0x100000*/
-    fgets((char*)RAM_base,0x9000,DISK);
+    fread((char*)RAM_base,1,0x9000,DISK);
     int x = 0;
     int temp = 0 ;
 
@@ -114,5 +114,5 @@ void BOOT()
 {
     IP=RAM_base+(0x7c00/4); /* org 0x7c00/4 due to pointer behavior*/
     for (;IP!=RAM_base+(0x7E00/4);IP+=2)
-         FUNCT[(*(IP)&COMMND_OPP)>>27]((*(IP)&FLAG_OPP)>>24,*(IP)&VAR1_FLAG,*(IP+1));
+            FUNCT[(*(IP)&COMMND_OPP)>>27]((*(IP)&FLAG_OPP)>>24,*(IP)&VAR1_FLAG,*(IP+1));
 }

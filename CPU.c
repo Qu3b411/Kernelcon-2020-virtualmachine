@@ -108,7 +108,9 @@ void or_(int flag, int Load_a, int Load_b){subMacroDef(or,flag,Load_a,Load_b);}
 
 */
 void xor_(int flag, int Load_a, int Load_b){subMacroDef(Xor,flag,Load_a,Load_b);}
-void not_(int flag, int Load_a, int setNull){subMacroDef(not,flag,Load_a,setNull);}
+void not_(int flag, int Load_a, int setNull){
+    subMacroDef(not,flag,Load_a,setNull);
+    }
 /**
     the MOD instruction takes two input's and divides them and then returns the remainder. this instruction
     has the following OP-CODE specification. the base instruction is 0b01110 and is proceeded by three
