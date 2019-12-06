@@ -1,3 +1,6 @@
+/**
+Author: Qu3b411
+**/
 #include "VM.h"
 char _detectEndian(){
     short word = 0x0011;
